@@ -1,6 +1,12 @@
 class HomeController < ApplicationController
     def index
-        render 'home/index'
+        # render 'home/index'
+        @title = "デイトラ"
+    end
+
+    def about
+        # render 'home/about'
+        @message = "メッセージ"
     end
 end
-  
+   
