@@ -38,7 +38,7 @@ class ArticlesController < ApplicationController
 
     def destroy
         # @article にしてしまうと、view で表示しているのではとなる (文化的な話)
-        article = Article.find(params[:id]) 
+        article = Article.find(params[:id])
         article.destroy!
         redirect_to root_path, notice: '削除に成功しました'
     end
@@ -51,6 +51,5 @@ class ArticlesController < ApplicationController
     def set_article
         @article = Article.find(params[:id])
     end
-    
+
 end
-   
