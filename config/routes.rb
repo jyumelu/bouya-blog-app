@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root to: 'articles#index'
-
   resources :articles
+  devise_for :users
 
 end
