@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
 
-    before_action :set_article, only: [:show, :edit, :update]
+    before_action :set_article, only: [:show]
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
     def index
@@ -12,11 +12,11 @@ class ArticlesController < ApplicationController
     end
 
     def new
-        @article = Article.new
+        @article = current_user.articles.build
     end
 
     def create
-        @article = Article.new(article_params)
+        @article = current_user.articles.build(article_params)
         if @article.save
             redirect_to article_path(@article), notice: '保存できたよ'
         else
@@ -26,9 +26,16 @@ class ArticlesController < ApplicationController
     end
 
     def edit
+        # この書き方以外だとセキュリティ的に問題あり
+        # 例
+        # @article = Articles.find(params[:id])
+        # だと、他人の記事を書き換えれてしまう
+        # 外部から他人に操作されてはいけないものは 現在のユーザのみ変更を許す
+        @article = current_user.articles.find(params[:id])
     end
 
     def update
+        @article = current_user.articles.find(params[:id])
         if @article.update(article_params)
             redirect_to article_path(@article), notice: '更新できました'
         else
@@ -39,7 +46,7 @@ class ArticlesController < ApplicationController
 
     def destroy
         # @article にしてしまうと、view で表示しているのではとなる (文化的な話)
-        article = Article.find(params[:id])
+        article = current_user.articles.find(params[:id])
         article.destroy!
         redirect_to root_path, notice: '削除に成功しました'
     end
