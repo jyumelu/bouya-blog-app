@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   end
   devise_for :users
 
+  resource :profile, only: [:show, :edit, :update]
 end
