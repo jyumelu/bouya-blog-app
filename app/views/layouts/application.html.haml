@@ -1,14 +1,14 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{ content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type" }/
     %title BouyaBlogApp
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = stylesheet_link_tag "application", "data-turbo-track": "reload", media: "all"
+    %meta{ content: "width=device-width,initial-scale=1", name: "viewport" }/
+    %link{ href: "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel: "stylesheet" }/
     = javascript_importmap_tags
-    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
-    %link{:href => "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", :rel => "stylesheet"}/
   %body
     %header.header
       .header_logos
@@ -23,11 +23,11 @@
           .dropdown-content
             = link_to 'プロフィール', profile_path
             = link_to 'お気に入り', favorites_path
-            = link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: 'delete'}
+            = link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: 'delete' }
       - else
         = link_to 'ログイン', new_user_session_path, class: 'header_loginBtn'
     - if flash.present?
       .flash
         - flash.each do |key, value|
-          %div{:class => key}= value
+          %div{ class: key }= value
     = yield
