@@ -45,11 +45,6 @@ class User < ApplicationRecord
     likes.exists?(article_id: article.id)
   end
 
-  def display_name
-    # ぼっち演算子(よく使う)
-    profile&.nickname || self.email.split('@').first
-  end
-
   # def birthday
   #   profile&.birthday
   # end
@@ -77,13 +72,7 @@ class User < ApplicationRecord
     profile || build_profile
   end
 
-  def avatar_image
-    if profile&.avatar&.attached?
-      profile.avatar
-    else
-      'default-avatar.png'
-    end
-  end
+
 
   private
   def get_user_id(user)
