@@ -7,6 +7,6 @@ import "../controllers"
 const application = Application.start();
 registerControllers(application);
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
     window.alert('DOM LOADED')
 })
