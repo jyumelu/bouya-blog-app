@@ -6,3 +6,7 @@ import "../controllers"
 
 const application = Application.start();
 registerControllers(application);
+
+document.addEventListener('DOMContentLoaded', () => {
+    window.alert('DOM LOADED')
+})

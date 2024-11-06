@@ -56,7 +56,7 @@
   gem 'rubocop-rails'
   gem 'sassc-rails'
   gem 'aws-sdk-s3', require: false
-  # gem 'hotwire-rails'
+  gem 'hotwire-rails'
 
 
   group :development, :test do
