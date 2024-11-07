@@ -9,4 +9,5 @@ registerControllers(application);
 
 document.addEventListener('turbolinks:load', () => {
     window.alert('DOM LOADED')
+    console("TEST")
 })
